@@ -13,6 +13,24 @@ class ChecksumAccumulator {
 
 object ChecksumAccumulator {
 
+import scala.collection.mutable
+
+  private val cache = mutable.Map.empty[String, Int]
+
+  def calculate(s: String): Int = {
+    if(cache.contains(s)) {
+      cache(s)
+    } else {
+      val ac = new ChecksumAccumulator
+      for(c <- s) {
+        ac.add(c.toByte)
+      }
+      val cs = ac.checksum()
+      cache += (s -> cs)
+      cs
+    }
+  }
+
   def main(args: Array[String]): Unit = {
     val test = new ChecksumAccumulator
     test.add(5)

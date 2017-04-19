@@ -51,3 +51,56 @@ fields是asinstance的，即从一个class创建了两个类，改变一个类�
 方法的参数都是val的，不能在方法内部改变参数的值
 
 如果一个方法只有副作用(side effort)，这个方法就叫做procedure
+
+## semicolon inference
+scala不需要单独在表达式后面添加分号，scala可以自动区分。scala在下面三种情况会认为行末尾不是分号：
+1. 以不合法的字符作为结尾，例如+；2：下一行的开始的字符不能作为一个开始的字符；3：行以圆括号，中括号等结尾。
+## singleton objects
+a singleton object 定义就像创建一个lei，但是不用new 关键字。
+
+伴生对象是和class名称相同的object，两者必须在同一个scala文件中。两者可以相互访问对方的member。
+
+一个singleton和class不同的地方是object不能传递参数在初始化的时候，singleton是第一个初始化的。
+
+## scala application
+acala application不同于scala script。application要以一个main方法为入口的Object。scala中.scala文件的名字可以和文件里面的类，object的名称不同，但是建议还是取相同的名称。  
+
+## the app trait
+object继承了App 可以写main方法，直接运行object
+
+# Basic Type and Operation
+## Basic type 
+Short, Char, Int,Long, Double,Fload,String,Boolean,Byte范围和Java一样
+
+
+## 5.9 operator precedence
+操作符优先级。scala的操作符就是方法，scala如何判断方法的优先级，就是根据方法的名字，例如以* / 开头的方法高于以+ - 开头的方法。 如下表：
+
+```
+* / %
++ -
+:=
+!
+< >
+&^|
+```
+但是有一个例外就是已=为结尾的操作符低于其他操作符。例如：
+
+```
+a *= b + 2 
+//等价于
+a = a * (b + 2)
+```
+当同一个优先级的操作符一起出现时如何关联：做关联或者有关联。以：为结尾的是右关联，其他为左关联：
+```
+a * b * c 
+//等价于
+(a * b) * c
+(a).*(b).*(c)
+
+a ::: b ::: c
+//等价于
+a ::: (b ::: c)
+(c).:::(b).:::(a)
+```
+
