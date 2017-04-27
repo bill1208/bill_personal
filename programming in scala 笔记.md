@@ -266,3 +266,38 @@ val filesHere = (new File(".")).listFiles()
     if file.getName.endsWith("scala")
   } yield file.getName
 ```
+## match expressions
+try match 和java类似，但是scala的try 表达式有返回值。 在finall中不建议使用return，因为finally中的return会覆盖try，match中的所有值。
+
+```
+object TryCatch {
+  var name = 0
+
+  def main(args: Array[String]): Unit = {
+    println(f)
+    println(g)
+    println(h)
+
+  }
+
+  def f(): Int = try return 1 finally return 2
+  def g(): Int = try 1 finally 2
+  def h() = try name = 1 finally name = 2
+}
+输出值：
+2
+1
+2
+```
+## variable scop
+和java基本一样，只有一点差别，scala在签到的语句中可以定义相同的变量名称。
+
+```
+val a = 1;
+{
+val a = 2;
+{
+println(a)
+}
+}
+```

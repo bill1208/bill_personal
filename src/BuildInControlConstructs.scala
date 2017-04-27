@@ -14,15 +14,15 @@ object BuildInControlConstructs {
 
   def fileLines(file: java.io.File) = scala.io.Source.fromFile(file).getLines().toList
 
-  def grep(pattern: String) = {
-    for {file <- filesHere
-         if file isFile
-         if file.getName.endsWith("scala");
-         line <- fileLines(file)
-         trimmedLine = line.trim
-         if trimmedLine.matches(pattern)
-    } print(file + ":" + trimmedLine)
-  }
+//  def grep(pattern: String) = {
+//    for {file <- filesHere
+//         if file isFile
+//         if file.getName.endsWith("scala")
+//         line <- fileLines(file)
+//         trimmedLine = line.trim
+//         if trimmedLine.matches(pattern)
+//    } print(file + ":" + trimmedLine)
+//  }
 
 
 
