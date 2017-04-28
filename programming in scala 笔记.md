@@ -301,3 +301,47 @@ println(a)
 }
 }
 ```
+
+
+# chapter 8 Functions and closoures
+## 8.1 methods 
+定义一个函数作为obeject的成员，此函数就是方法。
+
+## 8.2 local fucntion
+一个大的程序需要切割成一个个小的函数，有些函数只是为了其他函数的辅助作用，像这样的函数一般定义为private。但是如果这样的函数变多了会占用函数的命名空间，所以一般用本地函数来替代，也就是内部函数。
+
+```
+object LongLines {
+
+  def processFile(fileName: String, width: Int) = {
+    val lines = Source.fromFile(fileName)
+    for(line <- lines.getLines()) {
+      processLine(fileName,width,line)
+    }
+  }
+
+  private def processLine(fileName: String, width: Int, line: String) {
+    if(line.length > width) {
+      println(fileName + ": " + line.trim)
+    }
+  }
+
+
+  def processFile_optimized(fileName: String, width: Int) = {
+    val lines = Source.fromFile(fileName)
+    for(line <- lines.getLines()) {
+      processLine(line)
+    }
+
+    def processLine(line: String): Unit = {
+      if(line.length > width) {
+        println(fileName + ": " + line.trim)
+      }
+    }
+  }
+  def main(args: Array[String]): Unit = {
+
+  }
+
+}
+```
