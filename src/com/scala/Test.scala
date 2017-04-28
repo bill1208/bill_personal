@@ -1,3 +1,5 @@
+package com.scala
+
 /**
   * Created by z00176928 on 2017/4/20.
   */

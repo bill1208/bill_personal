@@ -1,15 +1,17 @@
+package com.scala
+
 /**
   * Created by z00176928 on 2017/4/27.
   */
-object TryCatchTest {
+object TryCatchScala {
   var name = 0
 
   def main(args: Array[String]): Unit = {
-    println(123)
-    println(f())
-    println(g())
+    println(f)
+    println(g)
     h()
     println(name)
+
   }
 
   def f(): Int = try return 1 finally return 2
