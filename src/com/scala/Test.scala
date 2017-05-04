@@ -7,7 +7,12 @@ object Test {
 
   def main(args: Array[String]): Unit = {
 
-    print(if(!args.isEmpty) args(0) else "default.txt")
+//    print(if(!args.isEmpty) args(0) else "default.txt")
+
+    println(List(12,23,3,4,-2034,1).filter(_ > 0))
+
+    val f = (_:Int) + (_:Int)
+    println(f(2,3))
 
 //    val oneHalf = new Rational(1,2)
 //    val oneThree = new Rational(1,3)
