@@ -79,3 +79,21 @@ val f = (_:Int) + (_:Int)
 println(f(2,3))
 ```
 
+## 8.6 部分函数-partially function，注意不是偏函数。部分函数就是只函数的参数少了一部分。
+
+
+```
+def main(args: Array[String]): Unit = {
+
+    val a = sum _  //把sum赋值给一个变量a,scala编译器会检测sum _少了三个参数会生成一带有3个参数的函数。注意sum和_之间有空格
+    print(a)
+    println(a(1,3,4)) //当调用a(1,2,3)时，其实调用a.apply(1,2,3)
+    val b = sum(_:Int, 2,3) //也可以指定其中的部分函数。
+    println(b)
+    println(b(1))
+
+  }
+
+  def sum(a:Int, b:Int, c:Int):Int = a + b + c //sum有三个参数
+```
+
