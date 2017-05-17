@@ -97,3 +97,116 @@ def main(args: Array[String]): Unit = {
   def sum(a:Int, b:Int, c:Int):Int = a + b + c //sum有三个参数
 ```
 
+## 8.7 closures 闭包
+在scala中定义函数可以像如下定义，但是这样会报错，因为不知道more是什么，需要提前定义变量more。这样函数就带了一个变量more，这就是闭包：闭包是一个函数，这个函数捕获或者携带了变量。
+当变量发生变化闭包也发生了变化，就是说在闭包外的变量发了值变化，闭包内会感受道，在闭包内发生了变量的值变化也会影响道闭包外。
+
+如果变量发生了变化闭包要以哪个为准？scala编译器会在闭包创建时候
+
+```
+    val test = (x:Int) => x + 1;
+//    val test02 = (x:Int) => x + more  //this will give compile error: cannot resolve symbol more
+
+    var more = 10;
+    val addMore = (x:Int) => x + more
+    println(addMore(10))   //20
+    more = 20
+    println(addMore(10))   //30
+
+    val inc1 = makeIncreaser(1)
+    println(inc1(99))
+
+    val inc99 = makeIncreaser(99)
+    println(inc99(1))
+  }
+
+  def makeIncreaser(increaser:Int) = (x:Int) => x + increaser
+```
+
+## 8.8 specific function call froms
+3种类型的特殊函数：重复参数，指名参数，默认参数。
+注意重复参数，虽然函数的实际类型是Array[String]，但是直接传递一个数组会报错。需要通过array: _*的方式把数组中的每个一个值传递给函数。
+
+```
+ def main(args: Array[String]) {
+  //use repeat arguments function
+    echo("bill")
+    echo("bill","bill02")
+    val arrayString = Array("bill","bill02")
+//    echo(arrayString) //compile is failure, the parameter should be string
+    echo(arrayString: _*)
+
+    //named argument
+    def speed(distant: Float, time: Float, others: Int): Float = distant / time * others
+    println(speed(100, 10, 2))
+    println(speed(distant = 100, time = 20, 3))
+//    speed(time = 20, distant = 100, 3) // the positional arguments should come first, if the named argument order is different
+    println(speed(200, others = 2, time = 10))
+
+    //default value for parameter
+    def speed02(distant: Float = 200, time: Float, others: Int = 2): Float = distant / time * others
+    println(speed02(time = 2))
+    println(speed02(300,20))
+  }
+
+  //repeat arguments
+  def echo(args: String*) = {
+    for(arg <- args) {
+      println(arg)
+    }
+  }
+```
+
+## 8.9 tail recursion
+functoin which call themselves ad the last action called tail recursion. scala compliler will detect tail recusion and repalce it with a jump back to the beggning of the function after updating the parameter value with new values. 
+
+the scala will optimized the tail recursion better performance. but we need clear what's the tail recursion: only last action call themselved. following is not tail recursion.
+
+```
+  // one tail recursion
+  def boom01(x: Int): Int = if(x == 0) throw new Exception("Boom") else boom01(x - 1)
+  // one recursion is not recursion because in the last call is not the function himself, it has + 1
+  def boom02(x: Int): Int = if(x == 0) throw new Exception("Boom") else boom01(x - 1) + 1
+  // one recursion is not recursion because because the last call is not indirect
+  def isEven(x: Int): Boolean =
+    if (x == 0) true else isOdd(x - 1)
+  def isOdd(x: Int): Boolean =
+    if (x == 0) false else isEven(x - 1)
+  // one recursion is not recursion because because the last call is function value call
+  val funValue = nestedFun _
+  def nestedFun(x: Int) : Unit = {
+    if (x != 0) { println(x); funValue(x - 1) }
+  }
+```
+注意tail recursion and non tail recursion the compliler result is different 
+
+```
+  public int boom01(int x)  // it is a tail recursion
+  {
+    for (;;)
+    {
+      if (x == 0) {
+        throw new Exception("Boom");
+      }
+      x -= 1;
+    }
+  }
+  
+  public int boom02(int x)  // it is not a tail recursion
+  {
+    if (x == 0) {
+      throw new Exception("Boom");
+    }
+    return boom01(x - 1) + 1;
+  }
+  
+  private TailRecurision$()
+  {
+    MODULE$ = this;
+  }
+}
+```
+
+should addMore
+
+
