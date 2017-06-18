@@ -4,6 +4,7 @@ package com.scala.chapter8
   * Created by 周生 on 2017/5/17.
   */
 object TailRecurision {
+
   def main(args: Array[String]) {
 
   }

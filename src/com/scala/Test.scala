@@ -1,4 +1,6 @@
-package com.scala
+ package com.scala
+
+import scala.io.Source
 
 /**
   * Created by z00176928 on 2017/4/20.
@@ -7,27 +9,42 @@ object Test {
 
   def main(args: Array[String]): Unit = {
 
-//    print(if(!args.isEmpty) args(0) else "default.txt")
+   val x = Console.readLine()
+    println("请输入名字")
+    if(x.equals("zhouxingpeng")) {
+      println("hello zhouxingpeng")
+    } else {
+      println("你输错了")
+    }
+//    file.foreach(line => if(line.contains("ab")) println(line + " -2-"))
+//    file.foreach{line =>
+//    }
 
-    println(List(12,23,3,4,-2034,1).filter(_ > 0))
-
-    val f = (_:Int) + (_:Int)
-    println(f(2,3))
-
-//    val oneHalf = new Rational(1,2)
-//    val oneThree = new Rational(1,3)
-//    println(oneHalf * 2)
+//    val tupleList = List[(String, String)]()
+//    // doesn't compile, violates case clause requirement
+////    val filtered = tupleList.takeWhile( case (s1, s2) => s1 == s2 )
+//    // block of code as a partial function and parentheses omission,
+//    // i.e. tupleList.takeWhile({ case (s1, s2) => s1 == s2 })
+//    val filtered = tupleList.takeWhile{ case (s1, s2) => s1 == s2 }
 //
-//    implicit def intToRational(x: Int) = new Rational(x)
-//    println(2 * oneHalf)
-
-//    println(""" welcome to linux
-//print "help" for help.""")
+//    // curly braces omission, i.e. List(1, 2, 3).reduceLeft({_+_})
+//    List(1, 2, 3).reduceLeft(_+_)
+//    // parentheses omission, i.e. List(1, 2, 3).reduceLeft({_+_})
+//    List(1, 2, 3).reduceLeft{_+_}
+//    // not both though it compiles, because meaning totally changes due to precedence
+//    List(1, 2, 3).reduceLeft _+_ // res1: String => String = <function1>
 //
-//    println(
-//      """ welcome to linux.
-//        | print "help" for help.
-//      """.stripMargin)
+//    // curly braces omission, i.e. List(1, 2, 3).foldLeft(0)({_ + _})
+//    List(1, 2, 3).foldLeft(0)(_ + _)
+//    // parentheses omission, i.e. List(1, 2, 3).foldLeft(0)({_ + _})
+//    List(1, 2, 3).foldLeft(0){_ + _}
+//    // block of code and parentheses omission
+//    List(1, 2, 3).foldLeft {0} {_ + _}
+//    // not both though it compiles, because meaning totally changes due to precedence
+//    List(1, 2, 3).foldLeft(0) _ + _
+//    // error: ';' expected but integer literal found.
+////    List(1, 2, 3).foldLeft 0 (_ + _)
+
   }
 
 
