@@ -1,5 +1,7 @@
  package com.scala
 
+import com.scala.chapter19.{Queue, Queue2}
+
 import scala.io.Source
 
 /**
@@ -9,13 +11,26 @@ object Test {
 
   def main(args: Array[String]): Unit = {
 
-   val x = Console.readLine()
-    println("请输入名字")
-    if(x.equals("zhouxingpeng")) {
-      println("hello zhouxingpeng")
-    } else {
-      println("你输错了")
-    }
+    test("ddd")
+    test2("ddd")
+
+
+    val q = new Queue(List(1,3,43),List("dd"))
+    println(q.tail)
+    println(q.head)
+    val q1 = Queue2(1,2,3,4)
+    println(q1.head)
+    println(q1.tail.head)
+
+
+
+//   val x = Console.readLine()
+//    println("请输入名字")
+//    if(x.equals("zhouxingpeng")) {
+//      println("hello zhouxingpeng")
+//    } else {
+//      println("你输错了")
+//    }
 //    file.foreach(line => if(line.contains("ab")) println(line + " -2-"))
 //    file.foreach{line =>
 //    }
@@ -48,5 +63,11 @@ object Test {
   }
 
 
+  def test(s: String) = {
+
+  }
+  def test2(o: AnyRef) = {
+
+  }
 
 }
